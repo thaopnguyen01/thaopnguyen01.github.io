@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thao Nguyen</title>
+  <meta name="description" content="AI/ML Risk Strategist & Innovation Leader — public health, RegTech, consumer safety.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap">
+  <style>
+    :root {
+      --bg:#F5EFE6;--bg2:#EDE5D8;--card:#FFFDF9;--border:#DDD3C4;
+      --text:#2C2220;--text2:#6B5A50;--terra:#C47B5A;--terra-d:#A35E3E;
+      --sage:#6B8F71;--sage-d:#4D6E52;
+      --land1:#6B8F71;--land2:#4D6E52;--land3:#3A5240;
+      --peak:#8FB896;--peak2:#C47B5A;--toggle-bg:#DDD3C4;
+      --sky-top-light:#C9DFF0;--sky-bot-light:#E8C9A0;
+      --sky-top-dark:#0A0814;--sky-bot-dark:#1A1228;
+    }
+    [data-theme="dark"] {
+      --bg:#1A1512;--bg2:#221C18;--card:#2A2018;--border:#3D3028;
+      --text:#EDE5D8;--text2:#A8957F;--terra:#D4896A;--terra-d:#C47B5A;
+      --sage:#8FB896;--sage-d:#6B8F71;
+      --land1:#2D4A32;--land2:#1E3322;--land3:#142416;
+      --peak:#4D6E52;--peak2:#8B5A3E;--toggle-bg:#3D3028;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.65;color:var(--text);background:var(--bg);min-height:100vh;display:flex;flex-direction:column;transition:background .35s,color .35s}
+
+    /* ── TOPBAR ── */
+    .topbar{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:56px}
+    .topbar-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--terra);text-decoration:none}
+    .toggle-btn{background:var(--toggle-bg);border:none;border-radius:999px;width:46px;height:25px;cursor:pointer;position:relative;transition:background .3s;flex-shrink:0}
+    .toggle-btn::after{content:'';position:absolute;top:3px;left:3px;width:19px;height:19px;border-radius:50%;background:var(--terra);transition:transform .3s}
+    [data-theme="dark"] .toggle-btn::after{transform:translateX(21px)}
+    .toggle-icon{position:absolute;top:50%;transform:translateY(-50%);font-size:10px;pointer-events:none}
+    .toggle-icon.sun{left:6px}.toggle-icon.moon{right:5px}
+
+    /* ── PANELS ── */
+    main{flex:1}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+
+    /* ── HOME ── */
+    .home-hero{padding:72px 40px 48px;max-width:860px;margin:0 auto}
+    .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);margin-bottom:18px;display:block}
+    .home-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,6vw,62px);font-weight:600;line-height:1.1;color:var(--text);margin-bottom:24px}
+    .home-hero h1 em{font-style:italic;color:var(--terra)}
+    .home-hero .bio{font-size:17px;line-height:1.8;color:var(--text2);max-width:680px;margin-bottom:20px}
+    .home-hero .bio strong{color:var(--text);font-weight:600}
+    .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+    .pill{background:var(--bg2);border:1px solid var(--border);color:var(--text2);font-size:12px;font-weight:500;letter-spacing:.04em;padding:6px 14px;border-radius:999px}
+    .pill.accent{background:var(--terra);color:#fff;border-color:var(--terra)}
+    .pill.sage{background:var(--sage);color:#fff;border-color:var(--sage)}
+
+    /* ── TIMELINE ── */
+    .section-wrap{padding:48px 40px 32px;max-width:860px;margin:0 auto;border-top:1px solid var(--border)}
+    .section-label{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);margin-bottom:32px;display:block}
+    .timeline{position:relative;padding-left:28px}
+    .timeline::before{content:'';position:absolute;left:0;top:6px;bottom:0;width:2px;background:linear-gradient(to bottom,var(--terra),var(--sage));border-radius:2px}
+    .tl-item{position:relative;margin-bottom:36px}
+    .tl-item:last-child{margin-bottom:0}
+    .tl-item::before{content:'';position:absolute;left:-32px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--terra);border:2px solid var(--bg);box-shadow:0 0 0 2px var(--terra)}
+    .tl-date{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--terra);margin-bottom:3px}
+    .tl-role{font-size:16px;font-weight:600;color:var(--text);margin-bottom:2px}
+    .tl-org{font-size:14px;color:var(--sage);font-weight:500;margin-bottom:5px}
+    .tl-desc{font-size:14px;color:var(--text2);line-height:1.65}
+
+    /* ── PROJECTS ── */
+    .projects-section{padding:56px 40px 40px;max-width:1040px;margin:0 auto}
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:8px}
+    .proj-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 26px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:12px;transition:transform .25s,box-shadow .25s,border-color .25s}
+    .proj-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px color-mix(in srgb,var(--terra) 14%,transparent);border-color:var(--terra)}
+    .proj-icon{width:44px;height:44px;border-radius:10px;background:color-mix(in srgb,var(--terra) 12%,var(--bg));display:flex;align-items:center;justify-content:center;font-size:22px}
+    .proj-card h3{font-size:17px;font-weight:600;line-height:1.3}
+    .proj-card p{font-size:14px;color:var(--text2);line-height:1.65;flex:1}
+    .proj-tags{display:flex;flex-wrap:wrap;gap:6px}
+    .proj-tag{font-size:11px;font-weight:500;padding:3px 10px;border-radius:999px;background:var(--bg2);color:var(--text2);border:1px solid var(--border)}
+    .proj-link{font-size:13px;font-weight:600;color:var(--terra)}
+    .proj-status{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:color-mix(in srgb,var(--sage) 15%,var(--bg));color:var(--sage-d);border:1px solid color-mix(in srgb,var(--sage) 28%,transparent)}
+    .pub-list{display:flex;flex-direction:column}
+    .pub-item{padding:20px 0;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:5px}
+    .pub-item:last-child{border-bottom:none}
+    .pub-date{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--terra)}
+    .pub-title{font-size:16px;font-weight:600;color:var(--text);line-height:1.3;text-decoration:none}
+    a.pub-title:hover{color:var(--terra)}
+    .pub-role{font-size:13px;color:var(--text2)}
+
+    /* ── WANDERINGS ── */
+    .wanderings-section{padding:56px 40px 40px;max-width:960px;margin:0 auto}
+    .wander-intro{font-size:17px;color:var(--text2);line-height:1.8;max-width:620px;margin-bottom:40px}
+    .sub-label{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);margin:36px 0 14px;display:block}
+    .sub-label:first-of-type{margin-top:0}
+    .flags-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:10px}
+    .flag-item{display:flex;flex-direction:column;align-items:center;gap:5px;padding:14px 6px;background:var(--card);border:1px solid var(--border);border-radius:12px;transition:transform .2s,border-color .2s}
+    .flag-item:hover{transform:translateY(-2px);border-color:var(--terra)}
+    .flag-item.home-flag{border-color:var(--sage);background:color-mix(in srgb,var(--sage) 8%,var(--card))}
+    .flag-emoji{font-size:30px;line-height:1}
+    .flag-name{font-size:11px;font-weight:500;color:var(--text);text-align:center;line-height:1.3}
+    .flag-tag{font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--sage);background:color-mix(in srgb,var(--sage) 12%,var(--bg));padding:2px 7px;border-radius:999px}
+    .parks-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:8px}
+    .parks-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .park-pill{background:var(--bg2);border:1px solid var(--border);color:var(--text2);font-size:12px;font-weight:500;padding:5px 12px;border-radius:999px}
+    .wander-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:4px}
+    .wander-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,transform .2s}
+    .wander-card:hover{border-color:var(--terra);transform:translateY(-2px)}
+    .wander-cat{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--sage)}
+    .wander-card h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;line-height:1.3;color:var(--text)}
+    .wander-card p{font-size:14px;color:var(--text2);line-height:1.65}
+    .wander-coming{font-size:12px;font-weight:500;color:var(--terra)}
+
+    /* ── LANDSCAPE FOOTER ── */
+    /* Key: background matches --bg so SVG blends into page seamlessly */
+    .site-footer{
+      position:relative;
+      width:100%;
+      /* sky gradient that starts from page bg color and transitions into the landscape sky */
+      background:linear-gradient(to bottom, var(--bg) 0%, var(--bg) 20%, transparent 100%);
+      margin-top:auto;
+    }
+    .landscape-svg-wrap{
+      display:block;
+      width:100%;
+      line-height:0; /* removes inline gap */
+    }
+    .landscape-svg-wrap svg{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    /* The sky inside the SVG fades from --bg at the top so it merges with the page */
+    .tab-row{
+      position:fixed;
+      bottom:0;
+      left:0;
+      right:0;
+      z-index:200;
+      display:flex;
+      justify-content:space-around;
+      align-items:center;
+      padding:10px 0 20px;
+      background:var(--land3);
+    }
+    /* space at bottom of page so content never hides behind the fixed tab bar */
+    body { padding-bottom: 68px; }
+    .tab-btn{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;color:#8FB896;transition:color .2s;padding:6px 20px;border-radius:12px}
+    .tab-btn:hover,.tab-btn.active{color:#EDE5D8}
+    .tab-btn svg{width:22px;height:22px}
+    .tab-label{font-size:11px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+
+    /* sky show/hide */
+    .sky-light{display:block}.sky-dark{display:none}
+    [data-theme="dark"] .sky-light{display:none}
+    [data-theme="dark"] .sky-dark{display:block}
+
+    @media(max-width:640px){
+      .topbar{padding:0 18px}
+      .home-hero,.section-wrap,.projects-section,.wanderings-section{padding-left:20px;padding-right:20px}
+      .home-hero{padding-top:48px}
+    }
+  </style>
+</head>
+<body>
+
+<nav class="topbar">
+  <span class="topbar-name">Thao Nguyen</span>
+  <button class="toggle-btn" id="themeToggle" aria-label="Toggle dark mode">
+    <span class="toggle-icon sun">☀</span>
+    <span class="toggle-icon moon">☾</span>
+  </button>
+</nav>
+
+<main>
+
+  <!-- HOME -->
+  <div class="tab-panel active" id="panel-home">
+    <div class="home-hero">
+      <span class="eyebrow">AI/ML Risk Strategist &amp; Innovation Leader</span>
+      <h1>I build systems that solve <em>hard problems</em> at scale.</h1>
+      <p class="bio">My background spans <strong>biology, frontline healthcare, regulatory compliance, operations, and AI/ML implementation</strong> — a combination that lets me move fluidly between the science of a problem, the regulatory framework around it, the people who operationalize it, and the technical architecture that solves it at scale.</p>
+      <p class="bio">I turn fragmented, high-volume data into structured intelligence that helps organizations detect risk, automate decisions, and act with confidence. Drawn to consequential problems — where precision matters, stakes are real, and better systems create measurable impact.</p>
+      <div class="pill-row">
+        <span class="pill accent">Public Health</span>
+        <span class="pill sage">RegTech</span>
+        <span class="pill accent">Consumer Safety</span>
+        <span class="pill sage">AI / ML Pipelines</span>
+        <span class="pill">Databricks · SQL · Python</span>
+        <span class="pill">Portland, OR · Vietnam</span>
+      </div>
+    </div>
+    <div class="section-wrap">
+      <span class="section-label">Journey</span>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">09/2025 – Present</div><div class="tl-role">Operational Change &amp; Innovation Manager</div><div class="tl-org">LegitScript · Portland, OR</div><div class="tl-desc">Envisioned and shipped end-to-end regulatory intelligence and risk detection pipelines — spanning automated ingestion, multilingual NLP, algorithmic similarity matching, likelihood × impact risk scoring, and AI-driven classification — processing millions of data points weekly across global marketplace clients.</div></div>
+        <div class="tl-item"><div class="tl-date">04/2023 – 08/2025</div><div class="tl-role">Implementation, Data &amp; Analytics Program Manager II</div><div class="tl-org">LegitScript · Portland, OR</div><div class="tl-desc">Scaled risk monitoring workflows and analytics solutions — managing 30+ analysts, leading POC initiatives that expanded services sevenfold, and generating $7M+ in new ARR.</div></div>
+        <div class="tl-item"><div class="tl-date">07/2020 – 04/2023</div><div class="tl-role">Program Manager</div><div class="tl-org">LegitScript · Portland, OR</div><div class="tl-desc">Launched and scaled risk monitoring programs for Google, Amazon, and other major clients — managing 30 multilingual analysts across multiple jurisdictions.</div></div>
+        <div class="tl-item"><div class="tl-date">12/2018 – 07/2020</div><div class="tl-role">Senior / Lead Analyst</div><div class="tl-org">LegitScript · Portland, OR</div><div class="tl-desc">Led analyst operations, expanded monitoring scope across jurisdictions, and developed new content classification processes.</div></div>
+        <div class="tl-item"><div class="tl-date">03/2017 – 12/2018</div><div class="tl-role">Compliance Analyst</div><div class="tl-org">LegitScript · Portland, OR</div><div class="tl-desc">Identified high-risk content across e-commerce and social platforms; conducted regulatory investigations for internet pharmacy and telemedicine certification.</div></div>
+        <div class="tl-item"><div class="tl-date">02/2016 – 03/2017</div><div class="tl-role">Medical Interpreter</div><div class="tl-org">UpHealth · Portland, OR</div><div class="tl-desc">HIPAA-compliant English-Vietnamese medical interpretation across 600+ healthcare facilities nationwide. Cultural brokerage in clinical settings.</div></div>
+        <div class="tl-item"><div class="tl-date">Lewis &amp; Clark College</div><div class="tl-role">B.A. Biology</div><div class="tl-org">Portland, OR</div><div class="tl-desc">Scientific research, quantitative analytics, and community health. ACS research on biochemistry applications in cancer treatment.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="tab-panel" id="panel-projects">
+    <div class="projects-section">
+      <span class="section-label">Projects</span>
+      <div class="projects-grid">
+        <a class="proj-card" href="https://thaopnguyen01.github.io/product_safety_alerts/" target="_blank" rel="noopener">
+          <div class="proj-icon">🛡️</div>
+          <div><h3>Product Safety Intelligence Dashboard</h3><span class="proj-status">Live</span></div>
+          <p>Interactive dashboard visualizing product safety alert trends across global markets — built on publicly available regulatory data.</p>
+          <div class="proj-tags"><span class="proj-tag">RegTech</span><span class="proj-tag">Public Health</span><span class="proj-tag">Data Viz</span><span class="proj-tag">HTML</span></div>
+          <span class="proj-link">View project →</span>
+        </a>
+        <a class="proj-card" href="https://thaopnguyen01.github.io/multiple_URLs_opener/" target="_blank" rel="noopener">
+          <div class="proj-icon">🔗</div>
+          <div><h3>Multiple URLs Opener</h3><span class="proj-status">Live</span></div>
+          <p>A browser productivity tool that opens multiple URLs simultaneously — built for analysts and researchers who check many sources at once.</p>
+          <div class="proj-tags"><span class="proj-tag">Productivity</span><span class="proj-tag">Browser Tool</span><span class="proj-tag">JavaScript</span></div>
+          <span class="proj-link">View project →</span>
+        </a>
+        <a class="proj-card" href="https://thaopnguyen01.github.io/headerforge-page/" target="_blank" rel="noopener">
+          <div class="proj-icon">⚙️</div>
+          <div><h3>HeaderForge</h3><span class="proj-status">Live</span></div>
+          <p>A utility tool for generating and managing HTTP headers — useful for developers and analysts working with APIs and data pipelines.</p>
+          <div class="proj-tags"><span class="proj-tag">Developer Tool</span><span class="proj-tag">API</span><span class="proj-tag">JavaScript</span></div>
+          <span class="proj-link">View project →</span>
+        </a>
+      </div>
+      <span class="section-label" style="margin-top:52px;">Publications &amp; Presentations</span>
+      <div class="pub-list">
+        <div class="pub-item"><span class="pub-date">12 / 2025</span><a class="pub-title" href="https://www.businesswire.com/news/home/20251209572056/en/Problematic-Peptides-Market-LegitScript-Data-Reveals-Multi-Year-Surge-Across-Social-Media-E-Commerce-and-Advertisements" target="_blank" rel="noopener">Problematic Peptides Market: Multi-Year Surge Across Digital Platforms</a><span class="pub-role">Data analysis</span></div>
+        <div class="pub-item"><span class="pub-date">05 / 2025</span><a class="pub-title" href="https://www.legitscript.com/legitscript-news/marketplace-risk-benchmarking-program-announcement/" target="_blank" rel="noopener">Marketplace Risk Benchmarking Research Program</a><span class="pub-role">Program designer</span></div>
+        <div class="pub-item"><span class="pub-date">07 / 2024</span><a class="pub-title" href="https://www.businesswire.com/news/home/20240716451721/en/LegitScript%E2%80%99s-Data-Reveals-1200-Increase-in-Violative-and-Problematic-Advertisements-for-GLP-1-Medications" target="_blank" rel="noopener">1,200% Increase in Violative and Problematic Advertisements for GLP-1 Medications</a><span class="pub-role">Data analysis</span></div>
+        <div class="pub-item"><span class="pub-date">06 / 2022</span><a class="pub-title" href="https://www.legitscript.com/dl/online-risk-management-handbook-download/" target="_blank" rel="noopener">LegitScript Online Risk Management Handbook</a><span class="pub-role">Contributor</span></div>
+        <div class="pub-item"><span class="pub-date">09 / 2021</span><span class="pub-title">Consumer Safety Trends on Internet Platforms</span><span class="pub-role">Co-presenter — Trust &amp; Safety Professional Association | Marketplace Risk Management Conference</span></div>
+        <div class="pub-item"><span class="pub-date">05 / 2020</span><a class="pub-title" href="https://www.legitscript.com/2023/12/11/geo-targeting-technology-targeting-cloaking/" target="_blank" rel="noopener">Geo-targeting, Technology Targeting, and Cloaking FAQs</a><span class="pub-role">Sole author</span></div>
+        <div class="pub-item"><span class="pub-date">10 / 2019</span><a class="pub-title" href="https://www.legitscript.com/dl/injectables/" target="_blank" rel="noopener">Injectable Products FAQs</a><span class="pub-role">Sole author</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WANDERINGS -->
+  <div class="tab-panel" id="panel-wanderings">
+    <div class="wanderings-section">
+      <span class="section-label">Wanderings</span>
+      <p class="wander-intro">Lived between Vietnam and Oregon. Traveled slowly through sixteen countries across four continents. These are the places, parks, and ideas that have shaped how I see the world.</p>
+      <span class="sub-label">Countries</span>
+      <div class="flags-grid">
+        <div class="flag-item home-flag"><span class="flag-emoji">🇻🇳</span><span class="flag-name">Vietnam</span><span class="flag-tag">Home</span></div>
+        <div class="flag-item home-flag"><span class="flag-emoji">🇺🇸</span><span class="flag-name">United States</span><span class="flag-tag">Home</span></div>
+        <div class="flag-item"><span class="flag-emoji">🇯🇵</span><span class="flag-name">Japan</span></div>
+        <div class="flag-item"><span class="flag-emoji">🇸🇬</span><span class="flag-name">Singapore</span></div>
+        <div class="flag-item"><span class="flag-emoji">🇨🇭</span><span class="flag-name">Switzerland</span></div>
+        <div class="flag-item"><span class="flag-emoji">🇫🇷</span><span class="flag-name">France</span></div>
+        <div class="flag-item"><span class="flag-emoji">🇬🇧</span><span class="flag-name">United Kingdom</span></div>
+        <div class="flag-item"><span class="flag-emoji">🇮🇹</span><span class="flag-name">Italy</span></div>
+        <div class="flag-item"><span class="flag-emoji">🇲🇨</span><span class="flag-name">Monaco</span></div>
+        <div class="flag-item"><span class="flag-emoji">🇻🇦</span><span class="flag-name">Holy See</span></div>
+        <div class="flag-item"><span class="flag-emoji">🇨🇦</span><span class="flag-name">Canada</span></div>
+        <div class="flag-item"><span class="flag-emoji">🇩🇴</span><span class="flag-name">Dominican Republic</span></div>
+        <div class="flag-item"><span class="flag-emoji">🇲🇽</span><span class="flag-name">Mexico</span></div>
+        <div class="flag-item"><span class="flag-emoji">🇮🇩</span><span class="flag-name">Indonesia</span></div>
+        <div class="flag-item"><span class="flag-emoji">🇰🇭</span><span class="flag-name">Cambodia</span></div>
+        <div class="flag-item"><span class="flag-emoji">🇱🇦</span><span class="flag-name">Laos</span></div>
+      </div>
+      <span class="sub-label">US National Parks</span>
+      <div class="parks-wrap">
+        <p style="font-size:14px;color:var(--text2);">18 parks and counting — mostly the American West and Pacific Northwest</p>
+        <div class="parks-grid">
+          <span class="park-pill">Arches</span><span class="park-pill">Canyonlands</span><span class="park-pill">Crater Lake</span><span class="park-pill">Death Valley</span><span class="park-pill">Grand Canyon</span><span class="park-pill">Grand Teton</span><span class="park-pill">Great Sand Dunes</span><span class="park-pill">Kings Canyon</span><span class="park-pill">Lassen Volcanic</span><span class="park-pill">Mesa Verde</span><span class="park-pill">North Cascades</span><span class="park-pill">Olympic</span><span class="park-pill">Pinnacles</span><span class="park-pill">Redwood</span><span class="park-pill">Rocky Mountain</span><span class="park-pill">Sequoia</span><span class="park-pill">Yellowstone</span><span class="park-pill">Yosemite</span><span class="park-pill">+ Thailand</span>
+        </div>
+      </div>
+      <span class="sub-label">Notes &amp; Essays</span>
+      <div class="wander-grid">
+        <div class="wander-card"><span class="wander-cat">Surveillance &amp; Public Health</span><h3>Marketplace monitoring IS public health surveillance</h3><p>Detecting harmful pharmaceuticals, counterfeit devices, and dangerous chemicals moving through digital platforms has always been epidemiological work — tracking how risk propagates through a population at scale. The methods are identical. Only the domain name differs.</p><span class="wander-coming">Essay coming soon</span></div>
+        <div class="wander-card"><span class="wander-cat">Travel</span><h3>Vietnam × Oregon</h3><p>Two landscapes that shaped how I see the world — Ninh Binh's karst peaks and Oregon's volcanic ridges, rice paddies and old-growth firs, the Mekong delta and the Columbia River Gorge.</p><span class="wander-coming">Story coming soon</span></div>
+        <div class="wander-card"><span class="wander-cat">Data</span><h3>GLP-1 and the attention economy of health</h3><p>A 1,200% surge in violative ads and what it reveals about how pharmaceutical risk travels through digital platforms — and why marketplace surveillance is the new pharmacovigilance.</p><span class="wander-coming">Post coming soon</span></div>
+        <div class="wander-card"><span class="wander-cat">National Parks</span><h3>The Pacific Northwest on foot</h3><p>Crater Lake, Olympic, North Cascades — a long-running project to know every trail in the Pacific Northwest before the glaciers are gone.</p><span class="wander-coming">Photos coming soon</span></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- LANDSCAPE FOOTER — blends into page, tabs sit inside the darkest ground strip -->
+<footer class="site-footer">
+  <div class="landscape-svg-wrap">
+    <svg viewBox="0 0 1440 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax slice">
+      <defs>
+        <!-- Sky fades FROM page background color at top, so it looks like the scene grows out of the page -->
+        <linearGradient id="skyDay" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#F5EFE6" stop-opacity="1"/>
+          <stop offset="40%"  stop-color="#E8D8B8" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#C9956B" stop-opacity="0.6"/>
+        </linearGradient>
+        <linearGradient id="skyNight" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#1A1512" stop-opacity="1"/>
+          <stop offset="40%"  stop-color="#120D20" stop-opacity="0.95"/>
+          <stop offset="100%" stop-color="#0A0814" stop-opacity="0.8"/>
+        </linearGradient>
+        <linearGradient id="pkVN" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#8FB896" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#4D6E52"/>
+        </linearGradient>
+        <linearGradient id="pkOR" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#C47B5A" stop-opacity="0.75"/>
+          <stop offset="100%" stop-color="#6B8F71"/>
+        </linearGradient>
+        <linearGradient id="fg1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#4D6E52"/>
+          <stop offset="100%" stop-color="#3A5240"/>
+        </linearGradient>
+        <linearGradient id="fg2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#3A5240"/>
+          <stop offset="100%" stop-color="#2A3D2E"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Sky — fades from page bg so it reads as part of the page -->
+      <rect width="1440" height="220" class="sky-light" fill="url(#skyDay)"/>
+      <rect width="1440" height="220" class="sky-dark"  fill="url(#skyNight)"/>
+
+      <!-- ── SUN + CLOUDS (light, right side) ── -->
+      <g class="sky-light">
+        <circle cx="1280" cy="48" r="28" fill="#F9D97A" opacity="0.82"/>
+        <circle cx="1280" cy="48" r="40" fill="#F9D97A" opacity="0.14"/>
+        <line x1="1280" y1="12"  x2="1280" y2="5"   stroke="#F9D97A" stroke-width="2.5" stroke-linecap="round" opacity="0.65"/>
+        <line x1="1280" y1="84"  x2="1280" y2="91"  stroke="#F9D97A" stroke-width="2.5" stroke-linecap="round" opacity="0.65"/>
+        <line x1="1244" y1="48"  x2="1237" y2="48"  stroke="#F9D97A" stroke-width="2.5" stroke-linecap="round" opacity="0.65"/>
+        <line x1="1316" y1="48"  x2="1323" y2="48"  stroke="#F9D97A" stroke-width="2.5" stroke-linecap="round" opacity="0.65"/>
+        <line x1="1254" y1="22"  x2="1249" y2="17"  stroke="#F9D97A" stroke-width="2"   stroke-linecap="round" opacity="0.5"/>
+        <line x1="1306" y1="74"  x2="1311" y2="79"  stroke="#F9D97A" stroke-width="2"   stroke-linecap="round" opacity="0.5"/>
+        <line x1="1306" y1="22"  x2="1311" y2="17"  stroke="#F9D97A" stroke-width="2"   stroke-linecap="round" opacity="0.5"/>
+        <line x1="1254" y1="74"  x2="1249" y2="79"  stroke="#F9D97A" stroke-width="2"   stroke-linecap="round" opacity="0.5"/>
+        <ellipse cx="1100" cy="42" rx="55" ry="20" fill="#fff" opacity="0.68"/>
+        <ellipse cx="1068" cy="52" rx="34" ry="16" fill="#fff" opacity="0.68"/>
+        <ellipse cx="1138" cy="54" rx="30" ry="14" fill="#fff" opacity="0.68"/>
+        <ellipse cx="1180" cy="62" rx="40" ry="16" fill="#fff" opacity="0.52"/>
+        <ellipse cx="1156" cy="70" rx="26" ry="13" fill="#fff" opacity="0.52"/>
+        <ellipse cx="340"  cy="55" rx="40" ry="16" fill="#fff" opacity="0.38"/>
+        <ellipse cx="314"  cy="63" rx="26" ry="12" fill="#fff" opacity="0.38"/>
+      </g>
+
+      <!-- ── MOON + STARS (dark, right side) ── -->
+      <g class="sky-dark">
+        <circle cx="1280" cy="50" r="28" fill="#EDE5D8" opacity="0.9"/>
+        <circle cx="1296" cy="41" r="22" fill="#1A1512"  opacity="1"/>
+        <ellipse cx="720" cy="100" rx="600" ry="32" fill="#7B6FA0" opacity="0.06" transform="rotate(-5 720 100)"/>
+        <circle cx="80"   cy="30"  r="1.3" fill="#EDE5D8" opacity="0.88"/>
+        <circle cx="160"  cy="12"  r="0.9" fill="#EDE5D8" opacity="0.72"/>
+        <circle cx="240"  cy="42"  r="1.5" fill="#EDE5D8" opacity="0.82"/>
+        <circle cx="330"  cy="18"  r="0.8" fill="#EDE5D8" opacity="0.68"/>
+        <circle cx="420"  cy="8"   r="1.2" fill="#EDE5D8" opacity="0.78"/>
+        <circle cx="510"  cy="36"  r="1.4" fill="#EDE5D8" opacity="0.72"/>
+        <circle cx="600"  cy="15"  r="0.9" fill="#EDE5D8" opacity="0.65"/>
+        <circle cx="690"  cy="45"  r="1.1" fill="#EDE5D8" opacity="0.78"/>
+        <circle cx="780"  cy="22"  r="1.5" fill="#EDE5D8" opacity="0.88"/>
+        <circle cx="870"  cy="8"   r="0.8" fill="#EDE5D8" opacity="0.68"/>
+        <circle cx="960"  cy="38"  r="1.3" fill="#EDE5D8" opacity="0.82"/>
+        <circle cx="1050" cy="16"  r="1.0" fill="#EDE5D8" opacity="0.75"/>
+        <circle cx="1140" cy="30"  r="0.9" fill="#EDE5D8" opacity="0.65"/>
+        <circle cx="1370" cy="22"  r="1.1" fill="#EDE5D8" opacity="0.72"/>
+        <circle cx="1420" cy="42"  r="0.8" fill="#EDE5D8" opacity="0.6"/>
+        <circle cx="390"  cy="20"  r="2.0" fill="#fff" opacity="0.88"/>
+        <circle cx="820"  cy="12"  r="1.8" fill="#fff" opacity="0.82"/>
+        <circle cx="1020" cy="6"   r="2.0" fill="#fff" opacity="0.88"/>
+      </g>
+
+      <!-- ── VIETNAM LEFT ── -->
+      <path d="M0,220 L0,140 Q20,115 45,95 Q62,78 75,95 Q92,68 115,50 Q132,36 150,50 Q165,36 182,48 Q198,36 215,50 Q230,62 242,50 Q258,36 275,52 Q290,68 302,58 Q318,46 335,62 Q348,80 360,100 L360,220Z" fill="url(#pkVN)" opacity="0.78"/>
+      <!-- Duc Ba Cathedral -->
+      <path d="M155,50 L160,16 L165,50Z" fill="#C47B5A" opacity="0.88"/>
+      <rect x="151" y="50" width="18" height="34" rx="1" fill="#C47B5A" opacity="0.82"/>
+      <path d="M148,84 L182,84 L182,76 L148,76Z" fill="#C47B5A" opacity="0.75"/>
+      <rect x="159" y="4"  width="2.5" height="12" fill="#C47B5A" opacity="0.95"/>
+      <rect x="155" y="8"  width="10"  height="2.5" fill="#C47B5A" opacity="0.95"/>
+      <!-- Rice paddy water lines -->
+      <rect x="0"   y="162" width="380" height="3" fill="#6B8F71" opacity="0.22"/>
+      <rect x="10"  y="172" width="350" height="2" fill="#6B8F71" opacity="0.16"/>
+      <rect x="20"  y="181" width="320" height="2" fill="#6B8F71" opacity="0.11"/>
+
+      <!-- ── CENTER rolling hills ── -->
+      <path d="M330,220 L330,130 Q440,108 540,118 Q640,128 720,112 Q800,96 880,104 Q960,112 1060,120 L1060,220Z" fill="#6B8F71" opacity="0.42"/>
+
+      <!-- ── OREGON RIGHT ── -->
+      <!-- Mt Hood -->
+      <path d="M1020,220 L1020,148 Q1042,118 1068,90 Q1086,68 1100,52 Q1116,36 1132,46 Q1146,56 1162,76 Q1184,104 1202,135 Q1218,160 1228,180 L1228,220Z" fill="url(#pkOR)" opacity="0.82"/>
+      <!-- Snow cap -->
+      <path d="M1100,52 Q1112,40 1122,42 Q1132,36 1144,44 Q1152,52 1164,68 Q1148,62 1132,59 Q1116,56 1100,52Z" fill="#EDE5D8" opacity="0.62"/>
+      <!-- Pine trees -->
+      <g fill="#4D6E52" opacity="0.88">
+        <path d="M850,220 L850,158 L857,158 L853,144 L861,144 L856,130 L865,130 L860,116 L870,116 L865,130 L874,130 L869,144 L877,144 L872,158 L879,158 L879,220Z"/>
+        <path d="M888,220 L888,164 L895,164 L891,151 L899,151 L895,138 L903,138 L899,125 L908,125 L904,138 L912,138 L908,151 L916,151 L912,164 L919,164 L919,220Z"/>
+        <path d="M925,220 L925,170 L931,170 L927,158 L934,158 L930,146 L937,146 L933,134 L942,134 L938,146 L945,146 L941,158 L948,158 L944,170 L951,170 L951,220Z"/>
+      </g>
+      <g fill="#6B8F71" opacity="0.75">
+        <path d="M1228,220 L1228,162 L1235,162 L1231,149 L1239,149 L1235,136 L1243,136 L1239,123 L1249,123 L1245,136 L1253,136 L1249,149 L1257,149 L1253,162 L1260,162 L1260,220Z"/>
+        <path d="M1268,220 L1268,168 L1274,168 L1270,156 L1278,156 L1274,144 L1281,144 L1277,132 L1286,132 L1282,144 L1289,144 L1285,156 L1292,156 L1288,168 L1295,168 L1295,220Z"/>
+        <path d="M1340,220 L1340,172 L1346,172 L1342,160 L1350,160 L1346,148 L1353,148 L1349,136 L1358,136 L1354,148 L1361,148 L1357,160 L1364,160 L1360,172 L1367,172 L1367,220Z"/>
+        <path d="M1390,220 L1390,176 L1396,176 L1392,164 L1400,164 L1396,152 L1403,152 L1399,140 L1408,140 L1404,152 L1411,152 L1407,164 L1414,164 L1410,176 L1417,176 L1417,220Z"/>
+      </g>
+
+      <!-- ── FOREGROUND STRIPS ── -->
+      <path d="M0,220 L0,182 Q120,168 240,173 Q360,178 480,170 Q600,162 720,167 Q840,172 960,169 Q1080,166 1200,172 Q1320,178 1440,172 L1440,220Z" fill="url(#fg1)"/>
+      <path d="M0,220 L0,198 Q180,188 360,192 Q540,196 720,190 Q900,184 1080,189 Q1260,194 1440,190 L1440,220Z" fill="url(#fg2)"/>
+
+      <!-- ── PASSION ICONS — center, above foreground ── -->
+      <!-- Public Health: heart + cross -->
+      <g transform="translate(660,152)" opacity="0.92">
+        <circle cx="0" cy="0" r="20" fill="#fff" opacity="0.14"/>
+        <path d="M0,13 C0,13 -15,-1 -15,-8 C-15,-14 -9,-18 -4,-15 C-2,-14 0,-11 0,-11 C0,-11 2,-14 4,-15 C9,-18 15,-14 15,-8 C15,-1 0,13 0,13Z" fill="#C47B5A" opacity="0.92"/>
+        <rect x="-1.8" y="-11" width="3.6" height="12" rx="1.1" fill="#fff" opacity="0.96"/>
+        <rect x="-5.5" y="-7"  width="11"  height="3.6" rx="1.1" fill="#fff" opacity="0.96"/>
+      </g>
+      <!-- RegTech: scales -->
+      <g transform="translate(720,148)" opacity="0.92">
+        <circle cx="0" cy="0" r="20" fill="#fff" opacity="0.14"/>
+        <line x1="-12" y1="0" x2="12" y2="0" stroke="#6B8F71" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="0" y1="-11" x2="0" y2="0" stroke="#6B8F71" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M-12,0 L-16,8 L-8,8Z" fill="#6B8F71" opacity="0.82"/>
+        <path d="M12,0 L8,8 L16,8Z" fill="#6B8F71" opacity="0.82"/>
+        <line x1="0" y1="-11" x2="0" y2="-15" stroke="#6B8F71" stroke-width="2"/>
+      </g>
+      <!-- Data: bar chart -->
+      <g transform="translate(780,152)" opacity="0.92">
+        <circle cx="0" cy="0" r="20" fill="#fff" opacity="0.14"/>
+        <rect x="-10" y="2"  width="5.5" height="9"  rx="1.2" fill="#C47B5A" opacity="0.9"/>
+        <rect x="-2"  y="-7" width="5.5" height="18" rx="1.2" fill="#C47B5A" opacity="0.9"/>
+        <rect x="6"   y="-2" width="5.5" height="13" rx="1.2" fill="#C47B5A" opacity="0.9"/>
+        <line x1="-12" y1="11" x2="13" y2="11" stroke="#C47B5A" stroke-width="2" stroke-linecap="round"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Tab buttons sit inside the darkest ground color so they read as part of the earth -->
+  <div class="tab-row">
+    <button class="tab-btn active" data-panel="home" aria-label="Home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+      <span class="tab-label">Home</span>
+    </button>
+    <button class="tab-btn" data-panel="projects" aria-label="Projects">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      <span class="tab-label">Projects</span>
+    </button>
+    <button class="tab-btn" data-panel="wanderings" aria-label="Wanderings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 2.5-4 5.5-4 9s1.5 6.5 4 9"/><path d="M12 3c2.5 2.5 4 5.5 4 9s-1.5 6.5-4 9"/><path d="M3 12h18"/></svg>
+      <span class="tab-label">Wanderings</span>
+    </button>
+  </div>
+</footer>
+
+<script>
+  // Theme
+  const root = document.documentElement;
+  const saved = localStorage.getItem('theme');
+  if (saved) root.setAttribute('data-theme', saved);
+  else if (window.matchMedia('(prefers-color-scheme: dark)').matches) root.setAttribute('data-theme','dark');
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    // Update sky gradient stops to match new bg
+    updateSkyGrad();
+  });
+
+  function updateSkyGrad() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const stop = document.getElementById('skyTopStop');
+    if (stop) stop.setAttribute('stop-color', isDark ? '#1A1512' : '#F5EFE6');
+  }
+  updateSkyGrad();
+
+  // Tab switching
+  document.querySelectorAll('.tab-btn').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+
+  document.body.style.opacity = '0';
+  window.addEventListener('load', () => {
+    document.body.style.transition = 'opacity 0.5s ease';
+    document.body.style.opacity = '1';
+  });
+</script>
+</body>
+</html>
